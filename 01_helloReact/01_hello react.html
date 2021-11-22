@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .x {
+      color: yellow !important;
+    }
+
+    .h {
+      font-size: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script type="text/babel">
+    let myId = 'h x '
+    const VDOM = (
+      <h2>
+        <span className={myId} style={{ color: 'red', backgroundColor: 'blue' }}>hello world</span>
+      </h2>
+    )
+    ReactDOM.render(VDOM, document.getElementById('test'))
+  </script>
+</body>
+
+</html>
