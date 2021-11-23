@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // 表单中的数据是现用现取的就是非受控组件
+    class Demo extends React.Component {
+      state = {
+        username: '',
+        password: ''
+      }
+      render() {
+        return (
+          <div>
+            <form action="www.atguigu.com" onSubmit={this.handleSubmit}>
+              <input type="text" name='username' onChange={this.onChange} />
+              <input type="password" name='password' onChange={this.dataChange2} />
+              <input type="submit" value='登陆' />
+            </form>
+          </div>
+        )
+      }
+      // debounceHandler = debounce(value => console.log(value), 500);
+
+      // onChange = e => {
+      //   this.debounceHandler(e.target.value);
+      // };
+
+      // debounceHandler = debounce(value => console.log(value))
+
+      // onChange = e => this.debounceHandler(e.target.value)
+
+      handleSubmit = (e) => {
+        e.preventDefault()
+        const { input1, input2 } = this
+        alert(input1.value)
+        alert(input2.value)
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById('test'))
+
+    function debounce(fn, delay = 1500) {
+      let time = null
+      return function (...agrs) {
+        console.log(agrs)
+        if (time) clearTimeout(time)
+        time = setTimeout(() => {
+          fn.call(this, ...agrs)
+        }, delay);
+      }
+    }
+    let debounceFunc = debounce((a, b) => console.log(a + b), 2000)
+    console.log(debounceFunc)
+    // console.log(debounceFunc(1, 2))
+  </script>
+
+</body>
+
+</html>

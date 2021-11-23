@@ -17,15 +17,33 @@
   <script src="../React-js/babel.min.js"></script>
   <script src="../React-js/prop-types.js"></script>
   <script type="text/babel">
+    /*
+      注意如果在ref是内联回调函数的形式去定义的
+      那么ref的回调会在每次页面重新渲染(render重新执行)调用两次 (因为内部不确定你在更新之前做了什么,得先让ref实例先赋值为null,垃圾回收机制)
+        第一次: 得到的值为none
+        第二次: 得到真实dom元素
+      原因:
+        因为render函数执行完之后会将之前的ref元素清除
+      补充:
+        {/ *  jsx注释内容 * /}
+    */
+
     class Weather extends React.Component {
+      state = { isHot: false }
       render() {
         return (
           <div>
-            <input type="text" ref={a => this.input1 = a} />
+            <button onClick={this.changeWeather}>切换天气</button>
+            <h2>天气{this.state.isHot === true ? '炎热' : '凉爽'}</h2>
+            <input type="text" ref={c => { this.input1 = c; console.log('@', c) }} />
             <button onClick={this.showData} >点我提示左侧信息</button>
             <input type="text" onBlur={this.showData2} ref={a => this.input2 = a} />
           </div>
         )
+      }
+      changeWeather = () => {
+        const isHot = this.state.isHot
+        this.setState({ isHot: !isHot })
       }
       showData = () => {
         alert(this.input1.value)

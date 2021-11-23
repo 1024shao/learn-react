@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // React.createRef只能创建一个容器,调用一次返回一个容器
+    class Weather extends React.Component {
+      inputRef = React.createRef()
+      render() {
+        return (
+          <div>
+            <input type="text" ref={this.inputRef} />
+            <button onClick={this.showData} >点我提示左侧信息</button>
+          </div>
+        )
+      }
+      showData = () => {
+        alert(this.inputRef.current.value)
+      }
+      showData2 = () => {
+        alert(this.refs.input2.value)
+      }
+    }
+    ReactDOM.render(<Weather />, document.getElementById('test'))
+  </script>
+
+</body>
+
+</html>

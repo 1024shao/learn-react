@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    /*
+      react中的绑定事件的方法 ooXxx 注意大小写
+        react中绑定的不是原生事件而是合成事件 ----为了更好的兼容性,例如事件源   e.target || e.srcElement
+        合成事件采用事件委托的方式进行处理(最外层发) ---提高效率
+      事件可以通过event.target拿到事件触发源,所以不要过度使用refs
+    */
+    class Weather extends React.Component {
+      inputRef = React.createRef()
+      render() {
+        return (
+          <div>
+            <input type="text" ref={this.inputRef} />
+            <button onClick={this.showData} >点我提示左侧信息</button>
+          </div>
+        )
+      }
+      showData = () => {
+        alert(this.inputRef.current.value)
+      }
+      showData2 = () => {
+        alert(this.refs.input2.value)
+      }
+    }
+    ReactDOM.render(<Weather />, document.getElementById('test'))
+  </script>
+
+</body>
+
+</html>

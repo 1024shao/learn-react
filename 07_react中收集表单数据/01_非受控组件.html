@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // 表单中的数据是现用现取的就是非受控组件
+    class Demo extends React.Component {
+      render() {
+        return (
+          <div>
+            <form action="www.atguigu.com" onSubmit={this.handleSubmit}>
+              <input type="text" name='username' ref={c => this.input1 = c} />
+              <input type="password" name='password' ref={c => this.input2 = c} />
+              <input type="submit" value='登陆' />
+            </form>
+          </div>
+        )
+      }
+      handleSubmit = (e) => {
+        e.preventDefault()
+        const { input1, input2 } = this
+        alert(input1.value)
+        alert(input2.value)
+
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById('test'))
+  </script>
+
+</body>
+
+</html>
