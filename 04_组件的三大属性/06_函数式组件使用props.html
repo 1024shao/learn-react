@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <div id="test1">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // class Weather extends React.Component {
+    //   render() {
+    //     console.log(this.props)
+    //     const { name, age, school } = this.props
+    //     return (
+    //       <div>
+    //         <ul>
+    //           <li>{name}</li>
+    //           <li>{age}</li>
+    //           <li >{school}</li>
+    //         </ul>
+    //       </div>
+    //     )
+    //   }
+    // }
+    function Weather(props) {
+      const { name, age, school } = props
+      return (
+        <div>
+          <ul>
+            <li>{name}</li>
+            <li>{age}</li>
+            <li >{school}</li>
+          </ul>
+        </div>
+      )
+    }
+    Weather.defaultProps = {
+      age: 20
+    }
+    const person = { name: '吴', school: 'changshaxueyuan' }
+    ReactDOM.render(<Weather {...person} />, document.getElementById('test'))
+    // ReactDOM.render(<Weather name='wu' />, document.getElementById('test1'))
+  </script>
+
+</body>
+
+</html>

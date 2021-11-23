@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // 官方已经不推荐使用refs的字符串写法了 因为会存在效率山的问题
+    // refs不能跟踪到this的指向
+    class Weather extends React.Component {
+      render() {
+        return (
+          <div>
+            <input type="text" ref='input' />
+            <button onClick={this.showData} >点我提示左侧信息</button>
+            <input type="text" onBlur={this.showData2} ref='input2' />
+          </div>
+        )
+      }
+      showData = () => {
+        alert(this.refs.input.value)
+      }
+      showData2 = () => {
+        alert(this.refs.input2.value)
+      }
+    }
+    ReactDOM.render(<Weather />, document.getElementById('test'))
+  </script>
+
+</body>
+
+</html>

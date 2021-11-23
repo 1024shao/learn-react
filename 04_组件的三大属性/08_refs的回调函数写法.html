@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    class Weather extends React.Component {
+      render() {
+        return (
+          <div>
+            <input type="text" ref={a => this.input1 = a} />
+            <button onClick={this.showData} >点我提示左侧信息</button>
+            <input type="text" onBlur={this.showData2} ref={a => this.input2 = a} />
+          </div>
+        )
+      }
+      showData = () => {
+        alert(this.input1.value)
+      }
+      showData2 = () => {
+        alert(this.input2.value)
+      }
+    }
+    ReactDOM.render(<Weather />, document.getElementById('test'))
+  </script>
+
+</body>
+
+</html>
