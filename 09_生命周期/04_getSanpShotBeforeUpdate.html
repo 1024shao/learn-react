@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .list {
+      background-color: aqua;
+      width: 140px;
+      height: 180px;
+      overflow: auto;
+    }
+
+    .list-item {
+      height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='test'></div>
+  <script src="../React-js/17.0/react.development17.0.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    class NewsList extends React.Component {
+      state = { newsArr: [] }
+      componentDidMount() {
+        setInterval(() => {
+          let { newsArr } = this.state
+          const news = '新闻' + (newsArr.length + 1)
+          this.setState({ newsArr: [news, ...newsArr] })
+        }, 1000);
+      }
+      getSnapshotBeforeUpdate() {
+        return this.listRef.scrollHeight
+      }
+      componentDidUpdate(preProps, preState, height) {
+        this.listRef.scrollTop += this.listRef.scrollHeight - height
+      }
+      render() {
+        return (
+          <div className='list' ref={c => this.listRef = c}>
+            {
+              this.state.newsArr.map((news, index) => {
+                return <div key={index} className='list-item'>{news}</div>
+              })
+            }
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<NewsList />, document.getElementById('test'))
+  </script>
+</body>
+
+</html>
