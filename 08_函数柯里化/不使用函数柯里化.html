@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // 表单中的数据是现用现取的就是非受控组件
+    class Demo extends React.Component {
+      state = {
+        username: '',
+        password: ''
+      }
+      render() {
+        return (
+          <div>
+            <form action="www.atguigu.com" onSubmit={this.handleSubmit}>
+              <input type="text" name='username' onChange={this.saveFormData('username')} />
+              <input type="password" name='password' onChange={this.saveFormData('password')} />
+              <input type="submit" value='登陆' />
+            </form>
+          </div>
+        )
+      }
+      saveFormData = dataType => {
+        return (e) => {
+          this.setState({ [dataType]: e.target.value })
+        }
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById('test'))
+  </script>
+
+</body>
+
+</html>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // 表单中的数据是现用现取的就是非受控组件
+    class Demo extends React.Component {
+      state = {
+        username: '',
+        password: ''
+      }
+      render() {
+        return (
+          <div>
+            <form action="www.atguigu.com" onSubmit={this.handleSubmit}>
+              <input type="text" name='username' onChange={e => this.saveFormData('username', e.target.value)} />
+              <input type="password" name='password' onChange={e => this.saveFormData('password', e.target.value)} />
+              <input type="submit" value='登陆' />
+            </form>
+          </div>
+        )
+      }
+      saveFormData = (dataType, value) => {
+        this.setState({ [dataType]: value })
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById('test'))
+  </script>
+
+</body>
+
+</html>

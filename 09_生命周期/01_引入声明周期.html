@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // 表单中的数据是现用现取的就是非受控组件
+    class Demo extends React.Component {
+      state = { opacity: 1 }
+      componentDidMount() {
+        this.timer = setInterval(() => {
+          let opacity = this.state.opacity
+          if (opacity >= 0) {
+            opacity -= 0.1
+            this.setState({ opacity: opacity })
+          } else {
+            this.setState({ opacity: 1 })
+          }
+        }, 100);
+      }
+      componentWillUnmount() {
+        clearInterval(this.timer)
+      }
+      render() {
+        return (
+          <div>
+            <h2 style={{ opacity: this.state.opacity, color: 'red' }} >react学不会</h2>
+            <button onClick={this.death}>怎么可能</button>
+          </div>
+        )
+      }
+      death = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById('test'))
+    console.log(new Demo())
+  </script>
+
+</body>
+
+</html>

@@ -21,17 +21,15 @@
   <script src="../React-js/prop-types.js"></script>
   <script type="text/babel">
     class Weather extends React.Component {
-      // static propTypes = {
-      //   name: PropTypes.string.isRequired
-      // }
-      // static defaultProps = {
-      //   age: 18
-      // }
+      static propTypes = {
+        name: PropTypes.string.isRequired
+      }
+      static defaultProps = {
+        age: 18
+      }
       constructor(props) {
         super(props)
-        this.defaultProps = {
-          age: 18
-        }
+
       }
       render() {
         // const { name } = this.props

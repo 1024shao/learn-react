@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <script type="text/babel">
+    // 表单中的数据是现用现取的就是非受控组件
+    class Demo extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = { num: 0 }
+        console.log('constructor');
+      }
+      componentWillMount() {
+        console.log('componentWillMount');
+      }
+      componentDidMount() {
+        console.log('componentDidMount');
+      }
+      componentWillUnmount() {
+        console.log('componentWillUnmount')
+      }
+      // 控制组件更新的阀门
+      shouldComponentUpdate() {
+        console.log('shouldComponentUpdate')
+        return true
+      }
+      componentWillUpdate() {
+        console.log('ComponentWillUpdate');
+      }
+      render() {
+        console.log('render');
+        const { num } = this.state
+        return (
+          <div>
+            <h2 >{num}</h2>
+            <button onClick={this.add}>add</button>
+            <button onClick={this.death}>怎么可能</button>
+          </div>
+        )
+      }
+      death = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+      }
+      add = () => {
+        let { num } = this.state
+        num++
+        this.setState({ num })
+      }
+    }
+    class A extends React.Component {
+      state = { car: '奔驰' }
+      render() {
+        return (
+          <div>
+            <h2>A</h2>
+            <button onClick={this.changeCar}>换车</button>
+            <B {...this.state} />
+          </div >
+        )
+      }
+      changeCar = () => {
+        this.setState({ car: '宝马' })
+      }
+    }
+    class B extends React.Component {
+      // 接受来自父组件的传入props的时候,调用的方法。首次传props不调用
+      componentWillReceiveProps(props) {
+        console.log('component', props)
+      }
+      shouldComponentUpdate() {
+        console.log('shouldComponentUpdate');
+        return true
+      }
+      componentWillUpdate() {
+        console.log('componentWillUpdate');
+      }
+      componentDidUpdate() {
+        console.log('componentDidUpdate');
+      }
+      render() {
+        console.log('render');
+        return (
+          <div>
+            <h2>B</h2>
+            <h1>我的小汽车{this.props.car}</h1>
+          </div >
+        )
+      }
+    }
+    ReactDOM.render(<A />, document.getElementById('test'))
+  </script>
+
+</body>
+
+</html>
