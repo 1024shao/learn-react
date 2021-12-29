@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test">
+
+  </div>
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script type="text/babel">
+    class List extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          movies: ['11', '22', '33']
+        }
+      }
+      render() {
+        const { movies } = this.state
+        return (
+          <ul>
+            {
+              movies.map(item => {
+                return <li key={item}>{item}</li>
+              })
+            }
+          </ul>
+        )
+      }
+    }
+    ReactDOM.render(<List />, document.getElementById('test'))
+  </script>
+</body>
+
+</html>

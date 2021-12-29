@@ -17,22 +17,59 @@
   </style>
 </head>
 
-<body>
-  <div id="test">
+<div id="test">
 
-  </div>
-  <script src="../React-js/react.development.js"></script>
-  <script src="../React-js/react-dom.development.js"></script>
-  <script src="../React-js/babel.min.js"></script>
-  <script type="text/babel">
-    let myId = 'h x '
-    const VDOM = (
-      <h2>
-        <span className={myId} style={{ color: 'red', backgroundColor: 'blue' }}>hello world</span>
-      </h2>
-    )
-    ReactDOM.render(VDOM, document.getElementById('test'))
-  </script>
+  <body>
+
+</div>
+<script src="../React-js/react.development.js"></script>
+<script src="../React-js/react-dom.development.js"></script>
+<script src="../React-js/babel.min.js"></script>
+<script type="text/babel">
+  // class Weather extends React.Component {
+  //   constructor(props) {
+  //     super(props)
+  //     this.state = { isHot: true }
+  //     this.rm = this.rem.bind(this)
+  //   }
+  //   render() {
+  //     return (
+  //       <div onClick={this.rm}> 今天天气很{this.state.isHot ? '炎热' : '凉爽'}</div >
+  //     )
+  //   }
+  //   rem() {
+  //     const { isHot } = this.state
+  //     this.setState({ isHot: !isHot })
+  //     console.log(this.state)
+  //   }
+  // }
+  // ReactDOM.render(<Weather />, document.getElementById('test'))
+  class Weather extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = { isHot: true, msg: 'hello ' }
+    }
+    render() {
+      return (
+        <div>
+          <div onClick={this.rem}>今天天气很{this.state.isHot ? '炎热' : '凉'}
+          </div>
+          <h2>{this.state.msg}</h2>
+          <button onClick={this.btnClick}>点击</button>
+        </div>
+      )
+    }
+    rem = () => {
+      const { isHot } = this.state
+      this.setState({ isHot: !isHot })
+      console.log(this.state)
+    }
+    btnClick = () => {
+      this.setState({ msg: 'react' })
+    }
+  }
+  ReactDOM.render(<Weather />, document.querySelector('#test'))
+</script>
 </body>
 
 </html>
